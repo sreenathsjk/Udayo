@@ -52,7 +52,7 @@ export default function App() {
   const [familySize, setFamilySize] = useState('4 Members');
   const [isOnboardingCompleted, setIsOnboardingCompleted] = useState(false);
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
-    return localStorage.getItem('udayo_onboarding_completed') === 'true';
+    return localStorage.getItem('udayos_onboarding_completed') === 'true';
   });
   
   // Local manager generator
@@ -123,7 +123,7 @@ export default function App() {
   const finalizeOnboarding = () => {
     setIsOnboardingCompleted(true);
     setHasCompletedOnboarding(true);
-    localStorage.setItem('udayo_onboarding_completed', 'true');
+    localStorage.setItem('udayos_onboarding_completed', 'true');
   };
 
   const closeOnboarding = () => {
@@ -149,7 +149,7 @@ export default function App() {
         <div className="flex items-center gap-4.5">
           <div className="flex flex-col">
             <span className="text-xl md:text-2xl font-serif font-black tracking-tight text-brand-pine flex items-center gap-1.5 leading-none">
-              UDAYO
+              UDAYOS
             </span>
             <span className="text-[10px] font-mono tracking-widest text-[#B0A793] font-bold mt-1 uppercase">
               HOME OPERATIONS
@@ -293,7 +293,7 @@ export default function App() {
               100% Customized Based on Your Home
             </span>
             <h2 className="text-3xl md:text-4xl font-serif text-brand-pine tracking-tight">
-              How do you want Udayo to serve you?
+              How do you want Udayos to serve you?
             </h2>
             <p className="text-[#6B6B59] font-light text-sm md:text-base leading-relaxed">
               We coordinate with what you actually consume. Use this builder to estimate your monthly budget. Remember, you can swap suppliers, pause, or change quantities in 3 seconds via WhatsApp. 
@@ -389,7 +389,7 @@ export default function App() {
               We do not replace your trusted vendors. We protect them from tech giants.
             </h3>
             <p className="text-[#6B6B59] font-light text-sm leading-relaxed">
-              Have a water agency boy you love, or a local dairy farm you have trusted for 10 years? <strong>Excellent.</strong> Tell us who they are. Your Udayo home manager will coordinate directly with them, log their deliveries, and pay them on key dates.
+              Have a water agency boy you love, or a local dairy farm you have trusted for 10 years? <strong>Excellent.</strong> Tell us who they are. Your Udayos home manager will coordinate directly with them, log their deliveries, and pay them on key dates.
             </p>
             <p className="text-[#6B6B59] font-light text-sm leading-relaxed">
               If your current vendor misses a delivery, your home manager handles the fallback pick-up. You never have to argue about missing calendars again.
@@ -449,7 +449,7 @@ export default function App() {
               How peace of mind feels in Anantapur
             </h2>
             <p className="text-[#6B6B59] font-light text-sm md:text-base leading-relaxed">
-              We asked our active users to describe the precise micro-moment they realized Udayo changed their lives. Here is what they shared.
+              We asked our active users to describe the precise micro-moment they realized Udayos changed their lives. Here is what they shared.
             </p>
           </div>
 
@@ -683,7 +683,7 @@ export default function App() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="space-y-1.5 text-center md:text-left">
             <h4 className="text-sm font-bold tracking-tight text-brand-pine">
-              UDAYO CO.
+              UDAYOS CO.
             </h4>
             <p className="font-light">
               Autonomous Personal Home Operations Service Desk • Anantapur Town.
@@ -696,7 +696,7 @@ export default function App() {
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] pt-6 border-t border-brand-stone/40">
-          <p>© 2026 UDAYO. Built specifically for Tier-2 Indian households with immense premium care and dedication.</p>
+          <p>© 2026 UDAYOS. Built specifically for Tier-2 Indian households with immense premium care and dedication.</p>
           <p className="font-mono text-gray-400">Status: Standalone Operations Verified</p>
         </div>
       </footer>
@@ -718,7 +718,7 @@ export default function App() {
               <div>
                 <div className="flex items-center gap-1.5">
                   <span className="text-[10px] font-mono tracking-widest text-[#B4C9B4] uppercase font-bold">
-                    Udayo Home Integration Flow
+                    Udayos Home Integration Flow
                   </span>
                   <span className="text-xs bg-brand-accent text-white px-2 py-0.5 rounded-full font-mono text-[9px] font-bold">
                     Step {onboardingStep === 4 ? 'Complete' : `${onboardingStep}/3`}

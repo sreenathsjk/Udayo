@@ -185,14 +185,14 @@ export default function MorningSimulator() {
             <div className="space-y-3">
               <div className="flex gap-2 items-center text-xs font-semibold text-brand-moss">
                 <Coffee className="w-3.5 h-3.5 text-brand-accent" />
-                <span>HOW UDAYO REPLACES THIS CHAOS:</span>
+                <span>HOW UDAYOS REPLACES THIS CHAOS:</span>
               </div>
               {activeChores.length === 0 ? (
                 <p className="text-xs text-emerald-700 leading-relaxed bg-emerald-50 p-3 rounded-lg border border-emerald-100">
-                  Perfect! You live in total harmony. For other residents, Udayo handles these chores in the background with absolute peace of mind.
+                  Perfect! You live in total harmony. For other residents, Udayos handles these chores in the background with absolute peace of mind.
                 </p>
               ) : (
-                <ul className="text-xs text-brand-moss space-y-2 font-medium" id="udayo-verdict-list">
+                <ul className="text-xs text-brand-moss space-y-2 font-medium" id="udayos-verdict-list">
                   {activeChores.map(cid => {
                     const chore = MORNING_CHORES.find(c => c.id === cid);
                     if (!chore) return null;

@@ -70,7 +70,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Senior Software Engineer & Mother of two',
     location: 'Saptagiri Colony, Anantapur',
     avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120',
-    quote: 'My mornings used to start with anxiety. "Did the milkman put 1 packet or 2? Is the water cylinder empty? Who will run to the local shop?" With Udayo, Rajesh (our dedicated home manager) takes care of it all. I get one UPI bill at the end of the month. Absolute bliss.',
+    quote: 'My mornings used to start with anxiety. "Did the milkman put 1 packet or 2? Is the water cylinder empty? Who will run to the local shop?" With Udayos, Rajesh (our dedicated home manager) takes care of it all. I get one UPI bill at the end of the month. Absolute bliss.',
     rating: 5,
     emotionalTrigger: 'RELIEF'
   },
@@ -80,7 +80,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Former Head of Physics Dept, SK University',
     location: 'Maruthi Nagar, Anantapur',
     avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=120',
-    quote: 'My children live in Bengaluru and were always worried about how I would lift 20-litre water cans or follow up with gas cylinder boys. Udayo is a godsend. My manager Mahesh verifies everything. If I have to go to Hyderabad for a week, I just send one WhatsApp: "Traveling, stop milk." That is it.',
+    quote: 'My children live in Bengaluru and were always worried about how I would lift 20-litre water cans or follow up with gas cylinder boys. Udayos is a godsend. My manager Mahesh verifies everything. If I have to go to Hyderabad for a week, I just send one WhatsApp: "Traveling, stop milk." That is it.',
     rating: 5,
     emotionalTrigger: 'TRUST'
   },
@@ -143,13 +143,13 @@ export const FAQS: FAQItem[] = [
     id: 'faq-2',
     category: 'Control & Flexibility',
     question: 'What if I am going out of town for a few days?',
-    answer: 'This is where Udayo shines. You do NOT need to open a complex app. Just WhatsApp your home manager: "No deliveries till Sunday." They will immediately pause your milk, water, and produce, and you will not be charged a single rupee for those days. Complete control with human simplicity.'
+    answer: 'This is where Udayos shines. You do NOT need to open a complex app. Just WhatsApp your home manager: "No deliveries till Sunday." They will immediately pause your milk, water, and produce, and you will not be charged a single rupee for those days. Complete control with human simplicity.'
   },
   {
     id: 'faq-3',
     category: 'Billing',
     question: 'Am I paying extra for the milk, water, or gas?',
-    answer: 'Never. You pay the exact official factory/market price of the goods (e.g., standard Nandini milk retail price, official government LPG cylinder rate). You only pay our small monthly Udayo service fee (₹149 or ₹299) for our team to physically pick up, coordinate, carry, and manage the vendors for you.'
+    answer: 'Never. You pay the exact official factory/market price of the goods (e.g., standard Nandini milk retail price, official government LPG cylinder rate). You only pay our small monthly Udayos service fee (₹149 or ₹299) for our team to physically pick up, coordinate, carry, and manage the vendors for you.'
   },
   {
     id: 'faq-4',

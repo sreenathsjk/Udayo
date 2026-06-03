@@ -82,7 +82,7 @@ export default function MyRecentOrders({
         qty: '2 packets',
         status: 'Delivered',
         manager: 'Ramesh Kumar',
-        notes: 'Placed quietly in the Udayo trial box.',
+        notes: 'Placed quietly in the Udayos trial box.',
         qualityCheck: 'Checked: 4°C safe temperature, 4.4% Fat Purity'
       },
       {
@@ -131,11 +131,11 @@ export default function MyRecentOrders({
 
   const handleShareReferral = () => {
     const sender = activeName;
-    const referralText = `Namaste! I recently activated my daily home routine on autopilot in ${activeLocality} using UDAYO (they manage my morning Nandini milk, 20L water cans, and gas bookings). 
+    const referralText = `Namaste! I recently activated my daily home routine on autopilot in ${activeLocality} using UDAYOS (they manage my morning Nandini milk, 20L water cans, and gas bookings). 
 
 No morning arguments or running around! Manager Ramesh coordinates everything. If you verify your home now, we both get ₹300 direct milk refill credits + 1 Free trial month!
 
-Check out here: https://udayo.in/trial?ref=${encodeURIComponent(sender.toLowerCase())}`;
+Check out here: https://udayos.in/trial?ref=${encodeURIComponent(sender.toLowerCase())}`;
     
     navigator.clipboard.writeText(referralText);
     setCopiedReferral(true);

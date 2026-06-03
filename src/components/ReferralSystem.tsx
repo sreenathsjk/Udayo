@@ -13,11 +13,11 @@ export default function ReferralSystem() {
     const recipient = friendName.trim() || 'Madam / Sir';
     return `Namaste ${recipient}! This is ${sender} here. 
 
-I recently launched my daily home on autopilot using UDAYO (they manage my Nandini milk packets, water cans, and gas bookings). It has completely eliminated my early morning hassles and running around in Anantapur!
+I recently launched my daily home on autopilot using UDAYOS (they manage my Nandini milk packets, water cans, and gas bookings). It has completely eliminated my early morning hassles and running around in Anantapur!
 
 Our area manager Ramesh does the physical lifting and checking. If you join too, we both get 1 Month of Free Service plus ₹300 direct Milk Credits! 
 
-Ask Ramesh to set up your trial box here: https://udayo.in/trial?ref=${encodeURIComponent(sender.toLowerCase())}`;
+Ask Ramesh to set up your trial box here: https://udayos.in/trial?ref=${encodeURIComponent(sender.toLowerCase())}`;
   };
 
   const handleCopy = () => {
@@ -47,7 +47,7 @@ Ask Ramesh to set up your trial box here: https://udayo.in/trial?ref=${encodeURI
           </h3>
           
           <p className="text-sm text-[#6B6B59] font-light leading-relaxed">
-            In Anantapur, mutual trust is our biggest asset. When your neighbors join Udayo, our operational density increases, meaning tighter schedules and even more reliable deliveries for your entire street block. 
+            In Anantapur, mutual trust is our biggest asset. When your neighbors join Udayos, our operational density increases, meaning tighter schedules and even more reliable deliveries for your entire street block. 
           </p>
 
           <div className="bg-brand-linen/60 p-4 rounded-2xl border border-brand-stone space-y-3 text-xs">

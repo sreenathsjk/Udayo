@@ -34,7 +34,7 @@ export default function FounderPanel() {
               </span>
             </div>
             <h4 className="text-2xl font-serif">
-              UDAYO Execution Strategy
+              UDAYOS Execution Strategy
             </h4>
             <p className="text-xs text-gray-400 font-light mt-1.5 leading-relaxed">
               Why this exact page is engineered to convert a first-time visitor in <strong>&lt; 15 seconds</strong> in Tier-2 Indian cities (like Anantapur).
@@ -87,7 +87,7 @@ export default function FounderPanel() {
           <div className="pt-6 border-t border-neutral-800/80 text-center text-[10px] text-gray-500 space-y-1">
             <p>Designed under direct influence of Apple's clean spacing principles,</p>
             <p>Airbnb's micro-copy warmth, and high-yielding direct copywriting.</p>
-            <p>© 2026 UDAYO. Designed for Scale.</p>
+            <p>© 2026 UDAYOS. Designed for Scale.</p>
           </div>
         </div>
       </div>

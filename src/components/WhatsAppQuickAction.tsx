@@ -13,7 +13,7 @@ const TEMPLATE_ACTIONS: QuickTemplate[] = [
     id: 'trial',
     badge: '🚀 Trial Box',
     title: 'Unlock 7-Day Free Trial',
-    text: 'Namaste Udayo Support! I am from Anantapur. I am interested in testing your daily home subscription on a 7-Day Free Trial. Please guide me on assigning an area manager.'
+    text: 'Namaste Udayos Support! I am from Anantapur. I am interested in testing your daily home subscription on a 7-Day Free Trial. Please guide me on assigning an area manager.'
   },
   {
     id: 'water',
@@ -31,13 +31,13 @@ const TEMPLATE_ACTIONS: QuickTemplate[] = [
     id: 'pause',
     badge: '✈️ Travel Pause',
     title: 'Pause deliveries for weekend',
-    text: 'Namaste Udayo, traveling tomorrow. Please pause my milk, eggs, and water till Monday.'
+    text: 'Namaste Udayos, traveling tomorrow. Please pause my milk, eggs, and water till Monday.'
   },
   {
     id: 'query',
     badge: '❓ Custom Setup',
     title: 'How does vendor vetting work?',
-    text: 'Namaste, I want to keep my existing local milkman delivery. How can I map him inside my Udayo monthly UPI bill?'
+    text: 'Namaste, I want to keep my existing local milkman delivery. How can I map him inside my Udayos monthly UPI bill?'
   }
 ];
 

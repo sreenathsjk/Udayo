@@ -82,7 +82,7 @@ export default function SubscriptionBuilder({ onApplyBox }: SubscriptionBuilderP
 
   const totalGoodsCost = items.reduce((acc, item) => acc + calculateItemMonthlyCost(item), 0);
   
-  // Udayo small subscription management fee
+  // Udayos small subscription management fee
   // If managing 1-2 items: ₹149. If managing 3+: ₹299.
   const serviceFee = activeIds.length === 0 ? 0 : activeIds.length <= 2 ? 149 : 299;
   const projectedTotalBill = totalGoodsCost + serviceFee;
@@ -278,7 +278,7 @@ export default function SubscriptionBuilder({ onApplyBox }: SubscriptionBuilderP
               </div>
               <div className="flex justify-between items-center text-gray-300">
                 <span className="flex items-center gap-1">
-                  Udayo Service / Management Fee 
+                  Udayos Service / Management Fee 
                   <span className="group relative cursor-pointer text-gray-400 hover:text-white inline-block">
                     <HelpCircle className="w-3.5 h-3.5" />
                     <span className="absolute bottom-6 left-1/2 -translate-x-1/2 w-48 bg-brand-charcoal text-white text-[10px] p-2 rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity leading-relaxed border border-brand-stone shadow-xl">

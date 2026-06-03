@@ -26,7 +26,7 @@ interface MetricData {
   month: string;
   milkDelivered: number; // in Liters
   waterCansSwapped: number; // number of 20L cans
-  autopilotCost: number; // ₹ Udayo Autopilot bill
+  autopilotCost: number; // ₹ Udayos Autopilot bill
   traditionalCost: number; // ₹ Estimated retail store run + fuel cost + spill wastage
   savings: number; // traditionalCost - autopilotCost
 }
@@ -61,10 +61,10 @@ export default function SubscriptionPerformance({ userName, userLocality }: Subs
 
   const handleShareReferral = () => {
     const sender = activeName;
-    const referralText = `Namaste! Based on my custom dashboard, I have saved ₹${totalSavings} and over 90 hours of morning hassle in ${activeLocality} using UDAYO for my Nandini milk & daily bubbletops. 
+    const referralText = `Namaste! Based on my custom dashboard, I have saved ₹${totalSavings} and over 90 hours of morning hassle in ${activeLocality} using UDAYOS for my Nandini milk & daily bubbletops. 
 Our area manager Ramesh does the daily physical deliveries on complete autopilot.
 
-Verify your house block and we both get ₹300 cash credits + 1 Free trial month: https://udayo.in/trial?ref=${encodeURIComponent(sender.toLowerCase())}`;
+Verify your house block and we both get ₹300 cash credits + 1 Free trial month: https://udayos.in/trial?ref=${encodeURIComponent(sender.toLowerCase())}`;
     
     navigator.clipboard.writeText(referralText);
     setCopiedReferral(true);
@@ -113,7 +113,7 @@ Verify your house block and we both get ₹300 cash credits + 1 Free trial month
             Subscription Performance & Savings
           </h3>
           <p className="text-xs text-gray-500 font-light max-w-xl">
-            Real dynamic analysis comparing Udayo consolidated autopilot versus traditional retail fetching costs (counting fuel, daily trip times, and milk packet spoilage).
+            Real dynamic analysis comparing Udayos consolidated autopilot versus traditional retail fetching costs (counting fuel, daily trip times, and milk packet spoilage).
           </p>
         </div>
 
@@ -260,7 +260,7 @@ Verify your house block and we both get ₹300 cash credits + 1 Free trial month
                 <Line
                   type="monotone"
                   dataKey="autopilotCost"
-                  name="Udayo Autopilot Cost"
+                  name="Udayos Autopilot Cost"
                   stroke="#2A4B35"
                   strokeWidth={3}
                   activeDot={{ r: 7 }}
