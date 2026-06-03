@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-brand-linen: #FAF9F5;
+  --color-brand-stone: #EFECE3;
+  --color-brand-moss: #3C4A3E;
+  --color-brand-pine: #1E2E22;
+  --color-brand-leaf: #5B8266;
+  --color-brand-accent: #D25E37; /* Warm Terracotta / Indian Saffron Accent */
+  --color-brand-charcoal: #1C1D1B;
+}
+
+@layer utilities {
+  /* Soft Apple-like glassmorphism */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+}
+
+body {
+  background-color: var(--color-brand-linen);
+  color: var(--color-brand-charcoal);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom crisp scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-brand-linen);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-stone);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-leaf);
+}

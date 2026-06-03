@@ -1,0 +1,6 @@
+{
+  "name": "Udayo",
+  "description": "Personal household subscription manager for busy Indian homes. Manage your milk, water, gas, and daily essentials effortlessly.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
