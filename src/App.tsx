@@ -56,6 +56,30 @@ export default function App() {
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
     return localStorage.getItem('udayos_onboarding_completed') === 'true';
   });
+
+  const [trialDays, setTrialDays] = useState<number>(() => {
+    const saved = localStorage.getItem('udayos_trial_days');
+    if (saved !== null) {
+      const parsed = parseInt(saved, 10);
+      if (!isNaN(parsed) && parsed >= 0 && parsed <= 7) {
+        return parsed;
+      }
+    }
+    return 7; // Default remaining days is 7
+  });
+
+  const [isTrialDropdownOpen, setIsTrialDropdownOpen] = useState(false);
+
+  const handlePassDay = () => {
+    const nextDays = Math.max(0, trialDays - 1);
+    setTrialDays(nextDays);
+    localStorage.setItem('udayos_trial_days', String(nextDays));
+  };
+
+  const handleResetTrial = () => {
+    setTrialDays(7);
+    localStorage.setItem('udayos_trial_days', '7');
+  };
   
   // Local manager generator - matches n number of local vendors and supplies the right partner according to the customer's sector/location dynamically
   const getLocalManager = () => {
@@ -126,6 +150,8 @@ export default function App() {
     setIsOnboardingCompleted(true);
     setHasCompletedOnboarding(true);
     localStorage.setItem('udayos_onboarding_completed', 'true');
+    setTrialDays(7);
+    localStorage.setItem('udayos_trial_days', '7');
   };
 
   const closeOnboarding = () => {
@@ -153,6 +179,151 @@ export default function App() {
             <MapPin className="w-3.5 h-3.5 text-brand-accent" />
             <span>Sector: Anantapur Urban</span>
           </div>
+        </div>
+
+        {/* 7-Day Trial Progress Tracker Badge with Interactive Dropdown Support */}
+        <div className="relative flex items-center" id="header-trial-tracker">
+          <button 
+            onClick={() => setIsTrialDropdownOpen(!isTrialDropdownOpen)}
+            className="flex items-center gap-1.5 md:gap-2 bg-[#F5ECE1] hover:bg-[#EBDFD0] border border-[#DCD3C1] px-2.5 md:px-3.5 py-2 rounded-full text-xs transition-all cursor-pointer focus:outline-none select-none max-w-[190px] sm:max-w-none truncate"
+            id="trial-badge-trigger"
+          >
+            <div className={`w-2 h-2 rounded-full shrink-0 ${hasCompletedOnboarding && trialDays === 0 ? 'bg-red-500' : 'bg-emerald-500 animate-pulse'}`} />
+            <span className="font-mono text-[9px] md:text-[10px] font-bold text-brand-moss tracking-wider uppercase font-medium">
+              {hasCompletedOnboarding ? (trialDays === 0 ? 'Trial Expired' : 'Trial Active') : "7-Day Trial Offer"}
+            </span>
+            <div className="w-10 md:w-16 h-1.5 bg-[#DDD9CD] rounded-full overflow-hidden shrink-0 relative">
+              <div 
+                className={`h-full transition-all duration-500 ${
+                  trialDays >= 5 ? 'bg-brand-leaf' : trialDays >= 3 ? 'bg-amber-600' : 'bg-brand-accent'
+                }`}
+                style={{ width: `${(trialDays / 7) * 100}%` }}
+              />
+            </div>
+            <span className="text-[9px] md:text-[10px] font-bold text-brand-moss shrink-0">
+              {trialDays}d left
+            </span>
+            <ChevronDown className="w-3.5 h-3.5 text-[#7A7569] shrink-0" />
+          </button>
+
+          {isTrialDropdownOpen && (
+            <>
+              {/* Dismiss backdrop */}
+              <div 
+                className="fixed inset-0 z-120 bg-transparent"
+                onClick={() => setIsTrialDropdownOpen(false)}
+              />
+              
+              <div className="absolute right-0 top-full mt-2 w-72 bg-[#FAF9F5] border border-[#DDD9CD] text-brand-charcoal rounded-2xl p-4 shadow-2xl z-130 space-y-3 shrink-0 animate-in fade-in slide-in-from-top-2 duration-150 text-left animate-in duration-200" id="trial-interactive-dropdown">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-mono tracking-wider font-bold text-[#A49980] uppercase">
+                    7-Day Subscription Trial
+                  </span>
+                  <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full font-bold ${
+                    hasCompletedOnboarding ? (trialDays === 0 ? 'bg-rose-100 text-rose-700' : 'bg-emerald-100 text-brand-leaf') : 'bg-[#EFECE3] text-gray-500'
+                  }`}>
+                    {hasCompletedOnboarding ? (trialDays === 0 ? 'EXPIRED' : 'ACTIVE') : 'OFFER'}
+                  </span>
+                </div>
+
+                <div className="space-y-1">
+                  <h4 className="text-xs font-bold text-brand-pine">
+                    {hasCompletedOnboarding 
+                      ? (trialDays === 0 ? 'Trial Offer Concluded' : `${trialDays} of 7 Days Remaining`)
+                      : '7-Day Zero Peace Fee Offer'
+                    }
+                  </h4>
+                  <p className="text-[11px] text-gray-500 leading-normal font-light">
+                    {hasCompletedOnboarding 
+                      ? (trialDays === 0 
+                          ? 'Your trial period is over. Standard Peace Fee of ₹299/mo is now active to keep operations completely on autopilot.'
+                          : `Your home operation autopilot has ${trialDays} free days remaining. Evaluate your matched manager's quality risk-free!`
+                        )
+                      : 'Onboard your household parameters to initiate your risk-free 7-day trial. Zero operator fees, Cancel anytime on WhatsApp.'
+                    }
+                  </p>
+                </div>
+
+                {hasCompletedOnboarding ? (
+                  <div className="space-y-3 pt-1 border-t border-brand-stone">
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[10px] font-semibold text-gray-400 font-mono">
+                        <span>Day 0 (Onboarded)</span>
+                        <span>Day 7 (End Trial)</span>
+                      </div>
+                      <div className="w-full h-2.5 bg-[#DDD9CD] rounded-full overflow-hidden relative">
+                        <div 
+                          className={`h-full transition-all duration-500 ${
+                            trialDays >= 5 ? 'bg-brand-leaf' : trialDays >= 3 ? 'bg-amber-600' : 'bg-brand-accent'
+                          }`}
+                          style={{ width: `${(trialDays / 7) * 100}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="bg-[#FAF9F5] border border-[#DDD9CD]/60 rounded-xl p-2.5 space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-[9px] font-mono font-bold text-[#A89E84] block uppercase">
+                          🔧 Simulator Console
+                        </span>
+                        <span className="text-[9px] font-mono font-bold text-brand-leaf bg-emerald-50 px-1.5 py-0.5 rounded">
+                          Click to test transitions
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2">
+                        <button 
+                          onClick={handlePassDay}
+                          disabled={trialDays === 0}
+                          className="w-full bg-white hover:bg-[#EFECE3] border border-[#DDD9CD] text-[10px] font-semibold py-1.5 px-2 rounded-lg cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed select-none transition-colors"
+                          id="pass-trial-day-btn"
+                        >
+                          Pass 1 Day ➔
+                        </button>
+                        <button 
+                          onClick={handleResetTrial}
+                          className="w-full bg-brand-moss hover:bg-brand-moss/95 text-brand-linen text-[10px] font-semibold py-1.5 px-2 rounded-lg cursor-pointer select-none transition-all"
+                          id="reset-trial-btn"
+                        >
+                          Reset to 7d
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-2 pt-2 border-t border-brand-stone">
+                    <button 
+                      onClick={() => {
+                        setIsTrialDropdownOpen(false);
+                        handleStartOnboardingDefault();
+                      }}
+                      className="w-full bg-brand-accent hover:bg-brand-accent/95 text-white font-semibold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1 cursor-pointer transition-all active:scale-95 shadow-md"
+                      id="onboard-from-dropdown-btn"
+                    >
+                      <span>Start Onboarding Checklist</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </button>
+                    
+                    <button 
+                      onClick={() => {
+                        setUserName("Anantapur Local Test");
+                        setUserPhone("9876543210");
+                        setHouseNumber("7A-1");
+                        localStorage.setItem('udayos_onboarding_completed', 'true');
+                        setHasCompletedOnboarding(true);
+                        setTrialDays(7);
+                        localStorage.setItem('udayos_trial_days', '7');
+                        setIsTrialDropdownOpen(false);
+                      }}
+                      className="w-full bg-[#EFECE3]/40 hover:bg-[#EFECE3] border border-dashed border-[#CFC9BA] text-brand-moss font-mono text-[9px] py-1.5 rounded-lg cursor-pointer transition-colors"
+                      id="bypass-onboard-btn"
+                    >
+                      ⚡ Fast-Pass: Simulate Onboarded Trial
+                    </button>
+                  </div>
+                )}
+              </div>
+            </>
+          )}
         </div>
 
         <nav className="flex items-center gap-4">
