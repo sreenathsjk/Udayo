@@ -312,7 +312,7 @@ export default function SubscriptionBuilder({ onApplyBox }: SubscriptionBuilderP
                 <span className="text-brand-leaf font-mono">12 Hours Free</span>
               </div>
               <p className="font-light leading-normal text-[11px]">
-                No more double checklists. Simply reply in chat if plan changes. Ramesh handles the rest silently.
+                No more double checklists. Simply reply in chat if plan changes. Your local area manager handles the rest silently.
               </p>
             </div>
 

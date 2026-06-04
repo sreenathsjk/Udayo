@@ -62,7 +62,7 @@ export default function SubscriptionPerformance({ userName, userLocality }: Subs
   const handleShareReferral = () => {
     const sender = activeName;
     const referralText = `Namaste! Based on my custom dashboard, I have saved ₹${totalSavings} and over 90 hours of morning hassle in ${activeLocality} using UDAYOS for my Nandini milk & daily bubbletops. 
-Our area manager Ramesh does the daily physical deliveries on complete autopilot.
+Our dedicated area manager does the daily physical deliveries on complete autopilot.
 
 Verify your house block and we both get ₹300 cash credits + 1 Free trial month: https://udayos.in/trial?ref=${encodeURIComponent(sender.toLowerCase())}`;
     

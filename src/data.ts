@@ -197,6 +197,6 @@ export const FOUNDER_INSIGHTS = [
   {
     targetSection: 'Dedicated Human Operator',
     heuristic: 'Agency Representation',
-    psychology: 'Unlike delivery aggregator gig-workers, having a dedicated local "Home Operations Partner" (with a real name and photo) establishes social accountability and premium hospitality. "Oh, Ramesh handles it" triggers complete delegation of worry.'
+    psychology: 'Unlike delivery aggregator gig-workers, having a dedicated local "Home Operations Partner" matched to the customer\'s locality (with a real name and photo) establishes social accountability and premium hospitality. Knowing an assigned local partner handles it triggers complete delegation of worry.'
   }
 ];

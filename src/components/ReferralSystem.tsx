@@ -15,9 +15,9 @@ export default function ReferralSystem() {
 
 I recently launched my daily home on autopilot using UDAYOS (they manage my Nandini milk packets, water cans, and gas bookings). It has completely eliminated my early morning hassles and running around in Anantapur!
 
-Our area manager Ramesh does the physical lifting and checking. If you join too, we both get 1 Month of Free Service plus ₹300 direct Milk Credits! 
+Our dedicated local area manager handles the physical lifting and checking. If you join too, we both get 1 Month of Free Service plus ₹300 direct Milk Credits! 
 
-Ask Ramesh to set up your trial box here: https://udayos.in/trial?ref=${encodeURIComponent(sender.toLowerCase())}`;
+Ask our support team to set up your trial box here: https://udayos.in/trial?ref=${encodeURIComponent(sender.toLowerCase())}`;
   };
 
   const handleCopy = () => {

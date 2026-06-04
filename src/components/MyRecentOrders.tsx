@@ -55,6 +55,19 @@ export default function MyRecentOrders({
   const activeLocality = userLocality || 'Maruthi Nagar';
   const activeHouse = houseNumber.trim() || 'Flat No. 101';
 
+  // Resolve dynamic local area manager based on selected customer locality
+  const getLocalityManager = (locality: string) => {
+    if (locality === 'Ramachandra Nagar') {
+      return 'Saraswathi Garu';
+    }
+    if (locality === 'Saptagiri Colony') {
+      return 'V. Krishna';
+    }
+    return 'Suresh K. Prasad'; // Dynamic replacement of Ramesh for Maruthi Nagar/General
+  };
+
+  const matchedManager = getLocalityManager(activeLocality);
+
   // Toggle dynamic mock state enhancements for premium high-fidelity interactions
   const [extraMilkAdded, setExtraMilkAdded] = useState(false);
   const [vacationMode, setVacationMode] = useState(false);
@@ -70,7 +83,7 @@ export default function MyRecentOrders({
         category: 'milk',
         qty: extraMilkAdded ? '3 packets' : '2 packets',
         status: vacationMode ? 'Pending' : 'Active Autopilot',
-        manager: 'Ramesh Kumar',
+        manager: matchedManager,
         notes: vacationMode ? '⏸️ Paused via Travel Toggle' : '⚡ Dispatched to morning logistics desk',
         qualityCheck: 'Pre-check: 4.5% Fat, Sanitized Box'
       },
@@ -81,7 +94,7 @@ export default function MyRecentOrders({
         category: 'milk',
         qty: '2 packets',
         status: 'Delivered',
-        manager: 'Ramesh Kumar',
+        manager: matchedManager,
         notes: 'Placed quietly in the Udayos trial box.',
         qualityCheck: 'Checked: 4°C safe temperature, 4.4% Fat Purity'
       },
@@ -92,7 +105,7 @@ export default function MyRecentOrders({
         category: 'water',
         qty: '1 Can (20 Liters)',
         status: 'Delivered',
-        manager: 'Ramesh Kumar',
+        manager: matchedManager,
         notes: 'Bubbletop swapped at kitchen door. Collected empty.',
         qualityCheck: 'Checked: TDS levels calibrated 110 PPM, Seal intact'
       },
@@ -103,7 +116,7 @@ export default function MyRecentOrders({
         category: 'milk',
         qty: '2 packets',
         status: 'Delivered',
-        manager: 'Ramesh Kumar',
+        manager: matchedManager,
         notes: 'Delivered. Fence-gate closed securely.',
         qualityCheck: 'Checked: Methylene blue test negative'
       },
@@ -114,7 +127,7 @@ export default function MyRecentOrders({
         category: 'milk',
         qty: '2 packets',
         status: 'Delivered',
-        manager: 'Ramesh Kumar',
+        manager: matchedManager,
         notes: 'Delivered successfully.',
         qualityCheck: 'Checked: Direct Nandini Dairy outlet shipment batch'
       }
@@ -133,9 +146,7 @@ export default function MyRecentOrders({
     const sender = activeName;
     const referralText = `Namaste! I recently activated my daily home routine on autopilot in ${activeLocality} using UDAYOS (they manage my morning Nandini milk, 20L water cans, and gas bookings). 
 
-No morning arguments or running around! Manager Ramesh coordinates everything. If you verify your home now, we both get ₹300 direct milk refill credits + 1 Free trial month!
-
-Check out here: https://udayos.in/trial?ref=${encodeURIComponent(sender.toLowerCase())}`;
+No morning arguments or running around! Our verified local manager coordinates everything beautifully. If you verify your home now, we both get ₹300 direct milk refill credits + 1 Free trial month: https://udayos.in/trial?ref=${encodeURIComponent(sender.toLowerCase())}`;
     
     navigator.clipboard.writeText(referralText);
     setCopiedReferral(true);
@@ -188,7 +199,7 @@ Check out here: https://udayos.in/trial?ref=${encodeURIComponent(sender.toLowerC
                 </h3>
                 
                 <p className="text-xs text-brand-charcoal/80 leading-relaxed font-light">
-                  Once you assign your regional manager (such as V. Krishna or Ramesh) through our quick setup, your custom Nandini milk check status & TDS calibrated water swap calendar will render here in real-time.
+                  Once your neighborhood's verified local manager (like V. Krishna, Saraswathi Garu, or Suresh Prasad) is assigned to your household according to your exact sector, your custom Nandini milk check status & TDS calibrated water swap calendar will render here in real-time.
                 </p>
 
                 <button
@@ -252,7 +263,7 @@ Check out here: https://udayos.in/trial?ref=${encodeURIComponent(sender.toLowerC
                 <div className="border-t border-brand-stone/60 pt-4 space-y-2.5">
                   <div className="flex justify-between items-center text-xs">
                     <span className="text-gray-500">Regional Manager</span>
-                    <span className="font-semibold text-brand-pine">Ramesh Kumar</span>
+                    <span className="font-semibold text-brand-pine">{matchedManager}</span>
                   </div>
                   <div className="flex justify-between items-center text-xs">
                     <span className="text-gray-500">Contact Method</span>
@@ -271,7 +282,7 @@ Check out here: https://udayos.in/trial?ref=${encodeURIComponent(sender.toLowerC
                 </div>
 
                 <p className="text-xs text-gray-500 font-light leading-relaxed">
-                  Make temporary adjustments for tomorrow morning without downloading anything. Our local desk updates Ramesh's checklist instantly.
+                  Make temporary adjustments for tomorrow morning without downloading anything. Our local desk updates your assigned manager's checklist instantly.
                 </p>
 
                 <div className="space-y-3 pt-1">
@@ -339,7 +350,7 @@ Check out here: https://udayos.in/trial?ref=${encodeURIComponent(sender.toLowerC
                     className="bg-emerald-50 border border-emerald-100 p-2.5 rounded-lg text-emerald-800 text-[10px] font-medium leading-normal flex gap-1.5"
                   >
                     <CheckCircle className="w-3.5 h-3.5 shrink-0 text-emerald-500" />
-                    <span>Your WhatsApp manager Ramesh has acknowledged this temporary edit. Tomorrow morning's run is updated!</span>
+                    <span>Your WhatsApp manager {matchedManager} has acknowledged this temporary edit. Tomorrow morning's run is updated!</span>
                   </motion.div>
                 ) : null}
 
@@ -431,7 +442,7 @@ Check out here: https://udayos.in/trial?ref=${encodeURIComponent(sender.toLowerC
 
                     <div className="flex md:flex-col items-end justify-between md:justify-center border-t md:border-t-0 border-gray-100 pt-2.5 md:pt-0 shrink-0">
                       <span className="text-[10px] font-mono font-bold text-gray-400 block">{log.timestamp}</span>
-                      <span className="text-[9.5px] text-brand-leaf font-medium md:mt-1 font-mono">By Ramesh K.</span>
+                      <span className="text-[9.5px] text-brand-leaf font-medium md:mt-1 font-mono">By {matchedManager.split(' ')[0]}.</span>
                     </div>
 
                   </div>

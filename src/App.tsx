@@ -45,6 +45,8 @@ export default function App() {
   // Onboarding Wizard State
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
   const [onboardingStep, setOnboardingStep] = useState(1);
+  const [isSimulatorOpen, setIsSimulatorOpen] = useState(false);
+  const [isCustomizerOpen, setIsCustomizerOpen] = useState(false);
   const [userName, setUserName] = useState('');
   const [userPhone, setUserPhone] = useState('');
   const [userLocality, setUserLocality] = useState('Maruthi Nagar');
@@ -55,7 +57,7 @@ export default function App() {
     return localStorage.getItem('udayos_onboarding_completed') === 'true';
   });
   
-  // Local manager generator
+  // Local manager generator - matches n number of local vendors and supplies the right partner according to the customer's sector/location dynamically
   const getLocalManager = () => {
     if (userLocality === 'Ramachandra Nagar') {
       return {
@@ -78,12 +80,12 @@ export default function App() {
       };
     }
     return {
-      name: 'Ramesh Kumar',
+      name: 'Suresh K. Prasad',
       age: 38,
-      background: 'Ex-Airforce canteen branch operator, living in Anantapur Maruthi Sector.',
+      background: 'Ex-Airforce canteen branch operator, active resident of Anantapur Maruthi Sector.',
       rating: '4.99/5',
       completedRuns: 3450,
-      avatar: 'R'
+      avatar: 'S'
     };
   };
 
@@ -93,7 +95,7 @@ export default function App() {
   const handleApplyBoxFromBuilder = (configs: Record<string, { option: string; qty: number; freq: string }>, planId: string) => {
     setBasketConfigs(configs);
     setSelectedPlan(planId);
-    // Smooth scroll to the onboarding launch section or open directly
+    setIsCustomizerOpen(false);
     setIsOnboardingOpen(true);
     setOnboardingStep(1);
   };
@@ -157,9 +159,12 @@ export default function App() {
           <a href="#how-it-works" className="hidden md:block text-xs font-semibold tracking-wider text-brand-moss hover:text-brand-accent transition-colors">
             HOW IT WORKS
           </a>
-          <a href="#customizer" className="hidden md:block text-xs font-semibold tracking-wider text-brand-moss hover:text-brand-accent transition-colors">
+          <button 
+            onClick={() => setIsCustomizerOpen(true)}
+            className="hidden md:block text-xs font-semibold tracking-wider text-brand-moss hover:text-brand-accent transition-colors bg-transparent border-0 p-0 cursor-pointer focus:outline-none"
+          >
             BOX BUILDER
-          </a>
+          </button>
           <a href="#trust" className="hidden md:block text-xs font-semibold tracking-wider text-brand-moss hover:text-brand-accent transition-colors font-medium">
             SAFETY & VETTING
           </a>
@@ -208,91 +213,27 @@ export default function App() {
 
           {/* CTA Group with high-conversion psychology */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4 max-w-md mx-auto justify-center">
-            <a 
-              href="#customizer" 
-              className="bg-brand-accent hover:bg-brand-accent/90 text-white font-semibold py-4 px-8 rounded-xl text-center shadow-lg hover:shadow-brand-accent/25 transition-all text-sm md:text-base flex items-center justify-center gap-1.5 group cursor-pointer w-full"
+            <button 
+              onClick={() => setIsCustomizerOpen(true)}
+              className="bg-brand-accent hover:bg-brand-accent/90 text-white font-semibold py-4 px-8 rounded-xl text-center shadow-lg hover:shadow-brand-accent/25 transition-all text-sm md:text-base flex items-center justify-center gap-1.5 group cursor-pointer w-full focus:outline-none"
               id="hero-primary-cta"
             >
               <span>Calculate Your Peace Fee</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a 
-              href="#simulator" 
-              className="bg-white hover:bg-brand-linen text-brand-moss font-semibold py-4 px-8 rounded-xl text-center border border-[#DDD9CD] transition-all text-sm md:text-base cursor-pointer w-full"
+            </button>
+            <button 
+              onClick={() => setIsSimulatorOpen(true)}
+              className="bg-white hover:bg-brand-linen text-brand-moss font-semibold py-4 px-8 rounded-xl text-center border border-[#DDD9CD] transition-all text-sm md:text-base cursor-pointer w-full focus:outline-none"
               id="hero-secondary-cta"
             >
               Audit My Morning Worry
-            </a>
+            </button>
           </div>
 
           {/* Behavioral Friction removal trust line */}
           <div className="text-xs text-[#8A8A7A] font-light pt-1">
             🎁 <strong>7-Day Trial Offer:</strong> Test your manager for 7 days on 0 subscription fee. Standard vendor rates apply. No App downloads needed.
           </div>
-        </div>
-      </section>
-
-      {/* Problem Mirroring - "Morning Headache Simulator" */}
-      <section className="bg-brand-stone/40 border-y border-brand-stone py-20 px-4 md:px-8" id="simulator">
-        <div className="max-w-5xl mx-auto space-y-12">
-          
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-xs font-mono tracking-widest text-brand-accent font-bold uppercase block">
-              The Mental Cost of Home Routine
-            </span>
-            <h2 className="text-3xl md:text-4xl font-serif text-brand-pine tracking-tight">
-              Does your home run with ease, or do you have to chase everyone?
-            </h2>
-            <p className="text-[#6B6B59] font-light text-sm md:text-base leading-relaxed">
-              Middle-class households in Anantapur spend up to 40 minutes every morning following up with suppliers, tracking local records, and performing heavy lifting. It's an exhausting background noise.
-            </p>
-          </div>
-
-          <MorningSimulator />
-
-          {/* Sidenote showing We are NOT a tech-marketplace */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6" id="brand-categorization-explainer">
-            <div className="bg-white/80 p-5 rounded-2xl border border-brand-stone text-xs leading-relaxed space-y-2">
-              <span className="font-bold text-red-700 uppercase tracking-wide block">❌ NOT A DELIVERY APP</span>
-              <p className="text-[#6B6B59] font-light">
-                We don't send random gig-delivery workers speeding on bikes to drop plastic packets at your gate and run. We manage the operation.
-              </p>
-            </div>
-            <div className="bg-white/80 p-5 rounded-2xl border border-brand-stone text-xs leading-relaxed space-y-2">
-              <span className="font-bold text-red-700 uppercase tracking-wide block">❌ NOT A GROCERY STORE</span>
-              <p className="text-[#6B6B59] font-light">
-                We are not trying to sell you discounted chips, cookies, or processed items. We protect your custom local suppliers.
-              </p>
-            </div>
-            <div className="bg-white/80 p-5 rounded-2xl border border-brand-stone text-xs leading-relaxed space-y-2">
-              <span className="font-bold text-brand-leaf uppercase tracking-wide block">👉 WE ARE A HUMAN MANAGER</span>
-              <p className="text-[#6B6B59] font-light">
-                We are a personal coordination desk. Your neighborhood Home Operations Manager physical checks, lifts, logs, and solves everything.
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Customizer Section - "Build Your Subscription" */}
-      <section className="py-20 px-4 md:px-8" id="customizer">
-        <div className="max-w-6xl mx-auto">
-          
-          <div className="text-center max-w-2xl mx-auto space-y-3 mb-10">
-            <span className="text-xs font-mono tracking-widest text-brand-leaf font-bold uppercase block">
-              100% Customized Based on Your Home
-            </span>
-            <h2 className="text-3xl md:text-4xl font-serif text-brand-pine tracking-tight">
-              How do you want Udayos to serve you?
-            </h2>
-            <p className="text-[#6B6B59] font-light text-sm md:text-base leading-relaxed">
-              We coordinate with what you actually consume. Use this builder to estimate your monthly budget. Remember, you can swap suppliers, pause, or change quantities in 3 seconds via WhatsApp. 
-            </p>
-          </div>
-
-          <SubscriptionBuilder onApplyBox={handleApplyBoxFromBuilder} />
-
         </div>
       </section>
 
@@ -333,7 +274,7 @@ export default function App() {
               <div className="space-y-4 pt-6">
                 <h4 className="text-lg font-serif font-semibold text-white">Meet Your Area Home Manager</h4>
                 <p className="text-xs text-gray-300 leading-normal font-light">
-                  A real, verified neighbor from your sector in Anantapur (like Ramesh) physically visits you, sets up your clean delivery box, and aligns your local vendors.
+                  A real, verified neighbor from your sector in Anantapur (such as V. Krishna, Saraswathi, or Suresh Prasad) physically visits you, sets up your clean delivery box, and aligns your local vendors. We match you automatically with one of our n available local coordinators according to your exact block location.
                 </p>
                 <div className="text-[11px] text-[#A6C492] font-mono font-medium">
                   → Complete physical verification
@@ -370,59 +311,29 @@ export default function App() {
       </section>
 
       {/* Trust Building: Who runs this? */}
-      <section className="py-20 px-4 md:px-8 max-w-5xl mx-auto" id="trust">
-        <div className="bg-white border border-brand-stone rounded-3xl p-6 md:p-10 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center" id="trust-card">
-          <div className="lg:col-span-7 space-y-6">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-brand-accent">
-              LOCAL VENDOR VERIFICATION & SOCIAL ACCOUNTABILITY
-            </span>
-            <h3 className="text-2xl md:text-3xl font-serif font-medium text-brand-pine leading-tight">
-              We do not replace your trusted vendors. We protect them from tech giants.
-            </h3>
-            <p className="text-[#6B6B59] font-light text-sm leading-relaxed">
-              Have a water agency boy you love, or a local dairy farm you have trusted for 10 years? <strong>Excellent.</strong> Tell us who they are. Your Udayos home manager will coordinate directly with them, log their deliveries, and pay them on key dates.
-            </p>
-            <p className="text-[#6B6B59] font-light text-sm leading-relaxed">
-              If your current vendor misses a delivery, your home manager handles the fallback pick-up. You never have to argue about missing calendars again.
-            </p>
-            
-            <div className="grid grid-cols-2 gap-4 pt-2">
-              <div className="flex gap-2 items-start">
-                <ShieldCheck className="w-5 h-5 text-brand-leaf shrink-0 mt-0.5" />
-                <span className="text-xs font-semibold text-brand-charcoal">100% Background Screened Neighbors</span>
-              </div>
-              <div className="flex gap-2 items-start">
-                <ShieldCheck className="w-5 h-5 text-brand-leaf shrink-0 mt-0.5" />
-                <span className="text-xs font-semibold text-brand-charcoal">Consolidated Secure UPI Billing</span>
-              </div>
+      <section className="py-20 px-4 md:px-8 max-w-4xl mx-auto" id="trust">
+        <div className="bg-white border border-brand-stone rounded-3xl p-6 md:p-10 shadow-xl space-y-6 text-center" id="trust-card">
+          <span className="text-xs font-mono font-bold uppercase tracking-wider text-brand-accent block">
+            LOCAL VENDOR VERIFICATION & SOCIAL ACCOUNTABILITY
+          </span>
+          <h3 className="text-2xl md:text-3xl font-serif font-medium text-brand-pine leading-tight max-w-2xl mx-auto">
+            We do not replace your trusted vendors. We protect them from tech giants.
+          </h3>
+          <p className="text-[#6B6B59] font-light text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+            Have a water agency boy you love, or a local dairy farm you have trusted for 10 years? <strong>Excellent.</strong> Tell us who they are. Our coordination desk will work directly with them, log their deliveries, and handle payments on key dates.
+          </p>
+          <p className="text-[#6B6B59] font-light text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+            If your current vendor misses a delivery, our coordination team handles the fallback pick-up. You never have to argue about missing calendars again.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-4 max-w-xl mx-auto border-t border-brand-stone">
+            <div className="flex gap-2 items-center">
+              <ShieldCheck className="w-5 h-5 text-brand-leaf shrink-0" />
+              <span className="text-xs font-semibold text-brand-charcoal">100% Background Screened Partners</span>
             </div>
-          </div>
-
-          <div className="lg:col-span-5 bg-brand-linen/60 rounded-2xl border border-brand-stone p-6 space-y-4">
-            <div className="text-center pb-4 border-b border-brand-stone/80">
-              <div className="w-16 h-16 rounded-full bg-brand-moss/10 text-brand-moss mx-auto flex items-center justify-center font-serif text-2xl font-bold font-mono">
-                R
-              </div>
-              <h4 className="text-base font-semibold text-brand-pine mt-2">Ramesh Kumar</h4>
-              <span className="text-[11px] font-mono text-gray-500 uppercase tracking-widest leading-none block mt-0.5">Verified Area Manager (Maruthi Nagar Sector)</span>
-            </div>
-
-            <div className="space-y-3 pt-2 text-xs">
-              <div className="flex justify-between">
-                <span className="text-gray-400 font-light">Age:</span>
-                <span className="font-semibold text-brand-charcoal">38 Years</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-400 font-light">Background:</span>
-                <span className="font-semibold text-brand-charcoal text-right max-w-[200px]">Ex-IAF Logistics, Resident of Anantapur Sector since 2011</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-400 font-light">Vetting score:</span>
-                <span className="text-brand-leaf font-bold">100% Audited</span>
-              </div>
-              <div className="pt-2 italic text-[#7A7A6A] leading-normal text-[11px] text-center border-t border-brand-stone/60">
-                "I handle the heavy groceries and water coordinate for 45 homes in Maruthi Nagar. My phone is open 24/7."
-              </div>
+            <div className="flex gap-2 items-center">
+              <ShieldCheck className="w-5 h-5 text-brand-leaf shrink-0" />
+              <span className="text-xs font-semibold text-brand-charcoal">Consolidated Secure UPI Billing</span>
             </div>
           </div>
         </div>
@@ -641,10 +552,10 @@ export default function App() {
               Risk-Free Morning autostart
             </span>
             <h2 className="text-3.5xl md:text-4.5xl font-serif text-brand-linen leading-tight">
-              Wake up tomorrow, and let Ramesh handle your milk, water, and gas.
+              Wake up tomorrow, and let {getLocalManager().name.split(' ')[0]} handle your milk, water, and gas.
             </h2>
             <p className="text-gray-300 font-light text-sm leading-relaxed">
-              Take 20 seconds to setup your home. Standard deliveries start from tomorrow morning at 5:45 AM. If you are not fully satisfied in the first week, notify Rajesh and pay absolutely ₹0 service fee.
+              Take 20 seconds to setup your home. Standard deliveries start from tomorrow morning at 5:45 AM. If you are not fully satisfied in the first week, notify our team and pay absolutely ₹0 service fee. We acquire multiple local vendor networks to serve your location perfectly.
             </p>
           </div>
 
@@ -682,7 +593,12 @@ export default function App() {
           </div>
           <div className="flex gap-6 font-semibold select-none text-brand-moss">
             <a href="#how-it-works" className="hover:text-brand-accent transition-colors">Privacy Charter</a>
-            <a href="#customizer" className="hover:text-brand-accent transition-colors">Terms of Peace</a>
+            <button 
+              onClick={() => setIsCustomizerOpen(true)}
+              className="hover:text-brand-accent transition-colors bg-transparent border-0 p-0 font-semibold cursor-pointer focus:outline-none"
+            >
+              Terms of Peace
+            </button>
             <a href="#trust" className="hover:text-brand-accent transition-colors">Support Hot-Channel</a>
           </div>
         </div>
@@ -693,7 +609,111 @@ export default function App() {
       </footer>
 
       {/* Floating WhatsApp Quick Action Hub */}
-      <WhatsAppQuickAction />
+      <WhatsAppQuickAction userLocality={userLocality} />
+
+      {/* --- LIVE INTERACTIVE CUSTOMIZER MODAL --- */}
+      {isCustomizerOpen && (
+        <div className="fixed inset-0 bg-brand-charcoal/80 backdrop-blur-sm z-110 flex items-center justify-center p-4 md:p-6" id="customizer-modal-backdrop">
+          <div 
+            className="w-full max-w-5xl bg-[#FAF9F5] rounded-[28px] border border-brand-stone shadow-2xl overflow-hidden flex flex-col max-h-[90vh] transition-all relative animate-in fade-in zoom-in duration-200"
+            id="customizer-modal-container"
+          >
+            {/* Modal Header */}
+            <div className="bg-brand-pine text-white py-5 px-6 shrink-0 flex items-center justify-between">
+              <div>
+                <span className="text-[10px] font-mono tracking-widest text-[#B4C9B4] uppercase font-bold">
+                  100% Customized Based on Your Home
+                </span>
+                <h3 className="text-xl font-serif font-medium text-brand-linen mt-0.5">
+                  Calculate Your Monthly Peace Fee
+                </h3>
+              </div>
+              <button 
+                onClick={() => setIsCustomizerOpen(false)}
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center focus:outline-none cursor-pointer text-lg font-bold"
+                aria-label="Close customizer"
+                id="close-customizer-btn"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-6">
+              <p className="text-[#6B6B59] font-light text-sm md:text-base leading-relaxed max-w-3xl">
+                We coordinate with what you actually consume. Use this builder to estimate your monthly budget. Remember, you can swap suppliers, pause, or change quantities in 3 seconds via WhatsApp.
+              </p>
+              <SubscriptionBuilder onApplyBox={handleApplyBoxFromBuilder} />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* --- LIVE INTERACTIVE SIMULATOR MODAL --- */}
+      {isSimulatorOpen && (
+        <div className="fixed inset-0 bg-brand-charcoal/80 backdrop-blur-sm z-110 flex items-center justify-center p-4 md:p-6" id="simulator-modal-backdrop">
+          <div 
+            className="w-full max-w-4xl bg-[#FAF9F5] rounded-[28px] border border-brand-stone shadow-2xl overflow-hidden flex flex-col max-h-[90vh] transition-all relative animate-in fade-in zoom-in duration-200"
+            id="simulator-modal-container"
+          >
+            {/* Modal Header */}
+            <div className="bg-brand-pine text-white py-5 px-6 shrink-0 flex items-center justify-between">
+              <div>
+                <span className="text-[10px] font-mono tracking-widest text-[#B4C9B4] uppercase font-bold">
+                  The Mental Cost of Home Routine
+                </span>
+                <h3 className="text-xl font-serif font-medium text-brand-linen mt-0.5">
+                  Audit My Morning Worry
+                </h3>
+              </div>
+              <button 
+                onClick={() => setIsSimulatorOpen(false)}
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center focus:outline-none cursor-pointer text-lg font-bold"
+                aria-label="Close simulator"
+                id="close-simulator-btn"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-8">
+              <div className="text-center max-w-2xl mx-auto space-y-3">
+                <h2 className="text-2xl md:text-3xl font-serif text-brand-pine tracking-tight">
+                  Does your home run with ease, or do you have to chase everyone?
+                </h2>
+                <p className="text-[#6B6B59] font-light text-sm leading-relaxed">
+                  Middle-class households in Anantapur spend up to 40 minutes every morning following up with suppliers, tracking local records, and performing heavy lifting. It's an exhausting background noise.
+                </p>
+              </div>
+
+              <MorningSimulator />
+
+              {/* Explainers card deck inside modal */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-brand-stone" id="modal-brand-explainers">
+                <div className="bg-white/80 p-5 rounded-2xl border border-brand-stone text-xs leading-relaxed space-y-2">
+                  <span className="font-bold text-red-700 uppercase tracking-wide block">❌ NOT A DELIVERY APP</span>
+                  <p className="text-[#6B6B59] font-light">
+                    We don't send random gig-delivery workers speeding on bikes to drop plastic packets at your gate and run. We manage the operation.
+                  </p>
+                </div>
+                <div className="bg-white/80 p-5 rounded-2xl border border-brand-stone text-xs leading-relaxed space-y-2">
+                  <span className="font-bold text-red-700 uppercase tracking-wide block">❌ NOT A GROCERY STORE</span>
+                  <p className="text-[#6B6B59] font-light">
+                    We are not trying to sell you discounted chips, cookies, or processed items. We protect your custom local suppliers.
+                  </p>
+                </div>
+                <div className="bg-white/80 p-5 rounded-2xl border border-brand-stone text-xs leading-relaxed space-y-2">
+                  <span className="font-bold text-brand-leaf uppercase tracking-wide block">👉 WE ARE A HUMAN MANAGER</span>
+                  <p className="text-[#6B6B59] font-light">
+                    We are a personal coordination desk. Your neighborhood Home Operations Manager physical checks, lifts, logs, and solves everything.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
 
       {/* --- LIVE INTERACTIVE ONBOARDING FLOATING WIZARD MODAL --- */}
@@ -1010,7 +1030,7 @@ export default function App() {
 
                   <div className="bg-emerald-50 text-emerald-900 border border-emerald-200 text-xs p-4 rounded-xl text-left space-y-2 leading-relaxed">
                     <h5 className="font-bold">Next immediate steps:</h5>
-                    <p className="font-light">1. You will receive an activation handshake SMS/WhatsApp from Ramesh Kumar within 5 minutes.</p>
+                    <p className="font-light">1. You will receive an activation handshake SMS/WhatsApp from our area manager, {getLocalManager().name}, within 5 minutes.</p>
                     <p className="font-light">2. They will confirm your exact favorite local Nandini milk packet variant delivery starting tomorrow morning.</p>
                     <p className="font-light">3. Your custom-molded delivery box will be securely placed over your fence/doorstep during afternoon sector reviews.</p>
                   </div>
