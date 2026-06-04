@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: '/Udayo/',
+    base: process.env.GITHUB_ACTIONS ? '/Udayo/' : '/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
