@@ -135,15 +135,6 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#FAF9F5] text-brand-charcoal antialiased selection:bg-brand-leaf selection:text-white pb-16">
       
-      {/* Top Banner: Localized & Relatable */}
-      <div className="bg-brand-pine text-brand-linen py-2.5 px-4 text-center text-xs md:text-sm font-light tracking-wide flex items-center justify-center gap-1.5 border-b border-white/5" id="top-notification-banner">
-        <span className="flex h-2 w-2 relative shrink-0">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-        </span>
-        <span>📍 Currently serving 450+ middle-class household boxes in <strong>Anantapur</strong> (Maruthi Nagar, Saptagiri, Ramachandra Nagar & Housing Board).</span>
-      </div>
-
       {/* Header / Navbar */}
       <header className="max-w-7xl mx-auto px-4 md:px-8 py-5 flex items-center justify-between" id="header-navbar">
         <div className="flex items-center gap-4.5">
